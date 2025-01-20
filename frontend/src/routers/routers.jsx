@@ -4,6 +4,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App/>,
+    children:[{
+      path: "/",
+      element: <div>Home</div>,
+    }]
   },
 ]);
 export default router;
