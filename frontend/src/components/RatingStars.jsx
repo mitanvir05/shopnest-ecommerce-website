@@ -1,4 +1,5 @@
-import React from 'react'
+/* eslint-disable react/prop-types */
+
 import { IoMdStarOutline } from "react-icons/io";
 
 const RatingStars = ({rating}) => {
