@@ -259,6 +259,8 @@ nav {
   margin-bottom: 5px;
   font-size: 0.8rem;
   color: goldenrod;
+  display: flex;
+  justify-content: center;
 }
 
 .product__card__content h4 {
