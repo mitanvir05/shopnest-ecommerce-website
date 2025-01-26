@@ -2,9 +2,15 @@
 import { Link } from "react-router-dom";
 import { BsCart3 } from "react-icons/bs";
 import RatingStars from "../../components/RatingStars";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/features/cart/cartSlice";
 
 const ProductCards = ({ products }) => {
   // console.log(products)
+  const dispatch = useDispatch();
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+  };
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
       {products.map((product, index) => (
@@ -18,7 +24,12 @@ const ProductCards = ({ products }) => {
               />
             </Link>
             <div className="hover:block absolute top-3 right-3">
-              <button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleAddToCart(product);
+                }}
+              >
                 <BsCart3 className="bg-primary p-0.5 text-white hover:bg-primary-dark" />
               </button>
             </div>
@@ -30,7 +41,7 @@ const ProductCards = ({ products }) => {
               ${product.price}{" "}
               {product.oldPrice ? <s>${product.oldPrice}</s> : null}
             </p>
-            <RatingStars rating={product.rating}/>
+            <RatingStars rating={product.rating} />
           </div>
         </div>
       ))}

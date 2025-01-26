@@ -6,7 +6,7 @@ const RatingStars = ({rating}) => {
     const stars=[];
     for(let i = 1;i<=5;i++){
        stars.push (
-         <IoMdStarOutline color={i<=rating? '#FFC107':'#E0E0E0'} size={18} />
+         <IoMdStarOutline key={i} color={i<=rating? '#FFC107':'#E0E0E0'} size={18} />
        )
     }
   return (
@@ -15,5 +15,4 @@ const RatingStars = ({rating}) => {
     </div>
   )
 }
-
 export default RatingStars
