@@ -86,4 +86,24 @@ router.get("/users", async (req, res) => {
     res.status(500).send("Error getting users:" + error.message);
   }
 });
+
+// update user role
+
+router.put("/users/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { role } = req.body;
+    const user = await User.findByIdAndUpdate(id, { role }, { new: true });
+    if (!user) {
+      return res.status(404).send({ message: "User not found" });
+    }
+    res.send(user);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Error updating user role:" + error.message);
+  }
+});
+
+
+
 module.exports = router;
