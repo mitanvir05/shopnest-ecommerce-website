@@ -36,7 +36,8 @@ router.post("/login", async (req, res) => {
       sameSite: "None",
     });
     res.status(200).send({
-      message: "User logged in successfully",token,
+      message: "User logged in successfully",
+      token,
       user: {
         _id: user._id,
         username: user.username,
@@ -44,7 +45,7 @@ router.post("/login", async (req, res) => {
         role: user.role,
         profileImage: user.profileImage,
         bio: user.bio,
-        profession: user.profession
+        profession: user.profession,
       },
     });
   } catch (error) {
@@ -53,4 +54,36 @@ router.post("/login", async (req, res) => {
   }
 });
 
+//logout endpoint
+router.post("/logout", (req, res) => {
+  res.clearCookie("token");
+  res.status(200).send({ message: "User logged out successfully" });
+});
+//delete user
+
+router.delete("/users/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findByIdAndDelete(id);
+    if (!user) {
+      return res.status(404).send({ message: "User not found" });
+    }
+    res.send({ message: "User deleted successfully" });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Error deleting user:" + error.message);
+  }
+});
+
+//get all users
+
+router.get("/users", async (req, res) => {
+  try {
+    const users = await User.find();
+    res.send(users);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Error getting users:" + error.message);
+  }
+});
 module.exports = router;
