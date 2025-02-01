@@ -104,6 +104,27 @@ router.put("/users/:id", async (req, res) => {
   }
 });
 
+// update user prodile
 
+router.patch("/edit-profile", async (req, res) => {
+  try {
+    const { userId, username, email, bio, profession, profileImage } = req.body;
+
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { username, email, bio, profession, profileImage },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).send({ message: "User not found" });
+    }
+
+    res.send(updatedUser);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Error updating user profile: " + error.message);
+  }
+});
 
 module.exports = router;
