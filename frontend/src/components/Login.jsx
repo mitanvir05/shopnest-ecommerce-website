@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginUserMutation } from "../redux/features/auth/authApi";
 import Swal from "sweetalert2";
+import { setUser } from "../redux/features/auth/authSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -19,7 +20,8 @@ const Login = () => {
     try {
       const response = await loginUser(data).unwrap();
       console.log(response);
-
+      const { token, user } = response;
+      dispatch(setUser({ user }));
       // ✅ Show SweetAlert2 success alert
       Swal.fire({
         title: "Login Successful!",
@@ -27,11 +29,9 @@ const Login = () => {
         icon: "success",
         confirmButtonText: "OK",
       }).then(() => {
-        navigate("/"); 
+        navigate("/");
       });
-
     } catch (error) {
-     
       Swal.fire({
         title: "Login Failed",
         text: error.message || "Invalid credentials",
@@ -45,7 +45,10 @@ const Login = () => {
     <section className="h-screen flex items-center justify-center">
       <div className="max-w-sm border shadow bg-white mx-auto p-8">
         <h2 className="text-2xl font-semibold pt-5">Please Login</h2>
-        <form onSubmit={handleLogin} className="space-y-5 max-w-sm mx-auto pt-8">
+        <form
+          onSubmit={handleLogin}
+          className="space-y-5 max-w-sm mx-auto pt-8"
+        >
           <input
             onChange={(e) => setEmail(e.target.value)}
             type="email"
