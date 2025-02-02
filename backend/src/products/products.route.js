@@ -28,7 +28,7 @@ router.post("/create-product", async (req, res) => {
     }
   } catch (error) {
     console.error(error.message);
-    res.status(500).send("Server Error");
+    res.status(500).send("Server Error on get all products");
   }
 });
 
@@ -74,6 +74,19 @@ router.get("/", async (req, res) => {
       res.status(500).send("Server Error");
     }
   });
-  
+//   get single product
+router.get("/:id", async (req, res) => {
+  try {
+    const product = await Products.findById(req.params.id)
+     .populate("author", "email username")
+    if (!product) return res.status(404).send("Product not found");
+
+    const reviews = await Reviews.find({ productId: req.params.id }).populate("userId", "email username");
+    res.status(200).json({product, reviews})
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server Error on single products fetching");
+  }
+});
 
 module.exports = router;
