@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/features/cart/cartSlice";
 
 const ProductCards = ({ products }) => {
-  // console.log(products)
+   console.log(products)
   const dispatch = useDispatch();
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
@@ -16,7 +16,7 @@ const ProductCards = ({ products }) => {
       {products.map((product, index) => (
         <div key={index} className="products__card">
           <div className="relative">
-            <Link to={`/shop/${product.id}`}>
+          <Link to={`/shop/${product._id}`}>
               <img
                 src={product.image}
                 alt=""

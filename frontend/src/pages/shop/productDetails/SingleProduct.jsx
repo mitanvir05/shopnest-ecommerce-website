@@ -1,9 +1,24 @@
 import { Link, useParams } from "react-router-dom";
 import { MdCompareArrows } from "react-icons/md";
 import RatingStars from "../../../components/RatingStars";
+import { useDispatch } from "react-redux";
+import { useFetchProductByIdQuery } from "../../../redux/features/products/productsApi";
+import { addToCart } from "../../../redux/features/cart/cartSlice";
 
 const SingleProduct = () => {
   const { id } = useParams();
+  const disPatch = useDispatch();
+  const { data, error, isLoading } = useFetchProductByIdQuery(id);
+  const singleProduct = data?.product || {};
+  const productReviews = data?.reviews || [];
+
+  const handleAddProductToCart = (product) => {
+    disPatch(addToCart(product));
+  };
+
+  if (isLoading) return <h2>Loading...</h2>;
+  if (error) return <h2>Error fetching product details: {error.message}</h2>;
+
   return (
     <>
       <section className="section__container bg-primary-light">
@@ -17,7 +32,7 @@ const SingleProduct = () => {
             <Link to="/shop">Shop</Link>
             <MdCompareArrows />
           </span>
-          <span className="hover:text-primary flex">Product Name</span>
+          <span className="hover:text-primary flex">{singleProduct.name}</span>
         </div>
       </section>
 
@@ -27,30 +42,42 @@ const SingleProduct = () => {
           <div className="md:w-1/2  w-full">
             <img
               className="rounded-md w-full h-auto"
-              src="https://images.unsplash.com/photo-1568251188392-ae32f898cb3b?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              src={singleProduct?.image}
               alt=""
             />
           </div>
           <div className="md:w-1/2 w-full">
-            <h3 className="text-2xl font-semibold mb-4">Product Name</h3>
+            <h3 className="text-2xl font-semibold mb-4">
+              {singleProduct.name}
+            </h3>
             <p className="text-xl text-primary mb-4">
-              $100 <s>$130</s>
+              ${singleProduct?.price}{" "}
+              {singleProduct.oldPrice && <s>${singleProduct?.oldPrice}</s>}
             </p>
-            <p className="text-gray-400 mb-4 ">Lorem ipsum dolor sit amet.</p>
+            <p className="text-gray-400 mb-4 ">{singleProduct?.description}</p>
             {/* additional product info*/}
-            <div>
+            <div className="flex flex-col space-y-2">
               <p>
-                <strong>Category : </strong>accessorires
+                <strong>Category : </strong>
+                {singleProduct?.category}
               </p>
               <p>
-                <strong>Color : </strong>Red
+                <strong>Color : </strong>
+                {singleProduct?.color}
               </p>
               <div className="flex items-center gap-1">
-                <strong>Rating : </strong> <RatingStars rating={5} />
+                <strong>Rating : </strong>{" "}
+                <RatingStars rating={singleProduct?.rating} />
               </div>
             </div>
             {/* add to cart button */}
-            <button className="mt-6 px-6 py-3 bg-primary text-white rounded-md">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleAddProductToCart(singleProduct);
+              }}
+              className="mt-6 px-6 py-3 bg-primary text-white rounded-md"
+            >
               Add to cart
             </button>
           </div>
