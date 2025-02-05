@@ -1,18 +1,21 @@
-/* eslint-disable react/prop-types */
+import { IoIosStar, IoIosStarOutline } from "react-icons/io";
 
-import { IoMdStarOutline } from "react-icons/io";
+const RatingStars = ({ rating }) => {
+  const stars = [];
+  
+  for (let i = 1; i <= 5; i++) {
+    stars.push(
+      <span key={i}>
+        {i <= rating ? (
+          <IoIosStar color="#FFC107" size={18} /> 
+        ) : (
+          <IoIosStarOutline color="#E0E0E0" size={18} /> 
+        )}
+      </span>
+    );
+  }
 
-const RatingStars = ({rating}) => {
-    const stars=[];
-    for(let i = 1;i<=5;i++){
-       stars.push (
-         <IoMdStarOutline key={i} color={i<=rating? '#FFC107':'#E0E0E0'} size={18} />
-       )
-    }
-  return (
-    <div className=' product__rating'>
-      {stars}
-    </div>
-  )
-}
-export default RatingStars
+  return <div className="product__rating">{stars}</div>;
+};
+
+export default RatingStars;
