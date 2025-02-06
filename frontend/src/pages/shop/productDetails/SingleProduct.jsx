@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useFetchProductByIdQuery } from "../../../redux/features/products/productsApi";
 import { addToCart } from "../../../redux/features/cart/cartSlice";
 import ReviewsCard from "./ReviewsCard";
+import LoadingSpinner from "../../../utils/LoadingSpinner";
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -17,7 +18,7 @@ const SingleProduct = () => {
     disPatch(addToCart(product));
   };
 
-  if (isLoading) return <h2>Loading...</h2>;
+  if (isLoading) return <LoadingSpinner />;
   if (error) return <h2>Error fetching product details: {error.message}</h2>;
 
   return (

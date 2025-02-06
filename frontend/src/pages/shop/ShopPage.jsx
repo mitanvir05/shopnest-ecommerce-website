@@ -2,6 +2,7 @@ import { useState } from "react";
 import ProductCards from "./ProductCards";
 import ShopFiltering from "./ShopFiltering";
 import { useFetchAllProductsQuery } from "../../redux/features/products/productsApi";
+import LoadingSpinner from "../../utils/LoadingSpinner";
 
 const filters = {
   categories: ["all", "accessories", "dress", "jewellery", "cosmetics"],
@@ -56,31 +57,7 @@ const ShopPage = () => {
     setCurrentPage(1);
   };
 
-  if (isLoading)
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <svg
-          className="animate-spin h-8 w-8 text-blue-500"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <circle
-            className="opacity-25"
-            cx="12"
-            cy="12"
-            r="10"
-            stroke="currentColor"
-            strokeWidth="4"
-          ></circle>
-          <path
-            className="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-          ></path>
-        </svg>
-      </div>
-    );
+  if (isLoading) return <LoadingSpinner />;
 
   if (error) {
     const errorMessage =
@@ -138,7 +115,9 @@ const ShopPage = () => {
               <div className="mt-6 flex justify-center">
                 <button
                   className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md mr-2 disabled:opacity-50"
-                  onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                  onClick={() =>
+                    setCurrentPage((prev) => Math.max(prev - 1, 1))
+                  }
                   disabled={currentPage === 1}
                   aria-label="Previous page"
                 >
