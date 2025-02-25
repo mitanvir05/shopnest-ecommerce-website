@@ -24,13 +24,24 @@ router.get("/user-stats/:email", async (req, res) => {
 
     const totalPaymentsAmount =
       totalPaymentsResult.length > 0 ? totalPaymentsResult[0].totalAmount : 0;
-  // total review
+    // total review
 
-  const totalReviews = await Reviews.countDocuments({
-    userId: user._id,
-  })
-  // 
-    } catch (error) {
+    const totalReviews = await Reviews.countDocuments({
+      userId: user._id,
+    });
+    // total purchase of product
+    const totalPurchasedProductIds = await Order.distinct(
+      "products.productId",
+      { email: email }
+    );
+    const totalPurchasedProducts = totalPurchasedProductIds.length;
+
+    res.status(200).json({
+      totalPayments: totalPaymentsAmount.toFixed(2),
+      totalReviews,
+      totalPurchasedProducts,
+    });
+  } catch (error) {
     console.error(error.message);
     res.status(500).send("Server error");
   }
