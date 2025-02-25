@@ -32,6 +32,10 @@ const router = createBrowserRouter([
         path: "/shop/:id",
         element: <SingleProduct />,
       },
+      {
+        path:"/success",
+        element:<h1>Thank you for your purchase!</h1>
+      }
     ],
   },
   {
