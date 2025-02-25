@@ -1,6 +1,6 @@
 const express = require("express");
 const Order = require("./orders.model");
-const router = express.Router(); 
+const router = express.Router();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 // Create routes
@@ -21,7 +21,7 @@ router.post("/create-checkout-session", async (req, res) => {
         },
         unit_amount: Math.round(item.price * 100),
       },
-      quantity: 1, 
+      quantity: 1,
     }));
 
     const session = await stripe.checkout.sessions.create({
@@ -39,9 +39,8 @@ router.post("/create-checkout-session", async (req, res) => {
   }
 });
 
-
 // Confirm payment
-router.post("/confirm-payment", async (req, res) => { 
+router.post("/confirm-payment", async (req, res) => {
   const { session_id } = req.body;
   try {
     const session = await stripe.checkout.sessions.retrieve(session_id, {
@@ -60,10 +59,12 @@ router.post("/confirm-payment", async (req, res) => {
         products: lineItems,
         amount,
         email: session.customer_details.email,
-        status: session.payment_intent.status === "succeeded" ? "pending" : "failed", // Fixed typo here
+        status:
+          session.payment_intent.status === "succeeded" ? "pending" : "failed", // Fixed typo here
       });
     } else {
-      order.status = session.payment_intent.status === "succeeded" ? "pending" : "failed"; // Fixed typo here
+      order.status =
+        session.payment_intent.status === "succeeded" ? "pending" : "failed"; // Fixed typo here
     }
     await order.save();
     res.json({ order });
@@ -72,5 +73,99 @@ router.post("/confirm-payment", async (req, res) => {
     res.status(500).send("Server error");
   }
 });
+
+// get order by email
+
+router.get("/:email", async (req, res) => {
+  const { email } = req.params;
+  if (!email) {
+    return res.status(400).send("Invalid email");
+  }
+  try {
+    const orders = await Order.find({ email: email });
+    if (orders.length === 0) return res.status(404).send("No orders found");
+    res.send(orders);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Error getting orders:" + error.message);
+  }
+});
+
+//get order by id
+
+router.get("/order/:id", async (req, res) => {
+  const { id } = req.params;
+  if (!id) {
+    return res.status(400).send("Invalid ID");
+  }
+  try {
+    const order = await Order.findById(id);
+    if (!order) return res.status(404).send("Order not found");
+    res.send(order);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Error getting order:" + error.message);
+  }
+});
+
+// get all orders
+
+router.get("/", async (req, res) => {
+  try {
+    const orders = await Order.find().sort({ createdAt: -1 });
+    if (orders.length === 0) return res.status(404).send("No orders found");
+    res.send(orders);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Error getting orders:" + error.message);
+  }
+});
+
+// update order status
+
+router.patch("/update-order-status/:id", async (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+
+  if (!id || !status) {
+    return res.status(400).send("Invalid ID or status");
+  }
+
+  try {
+    const updatedOrder = await Order.findByIdAndUpdate(
+      id,
+      {
+        status,
+        updatedAt: new Date(),
+      },
+      {
+        new: true,
+        runvalidators: true,
+      }
+    );
+    if (!updatedOrder) return res.status(404).send("Order not found");
+    res.send(updatedOrder);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Error updating order status:" + error.message);
+  }
+});
+
+
+//delete order
+
+router.delete("/delete-order/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const deletedOrder = await Order.findByIdAndDelete(id);
+    if (!deletedOrder) return res.status(404).send("Order not found");
+    res.json({ message: "Order deleted successfully", deletedOrder }); 
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Error deleting order:" + error.message);
+  }
+});
+
+
 
 module.exports = router;
