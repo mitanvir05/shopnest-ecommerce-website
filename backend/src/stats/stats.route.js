@@ -2,6 +2,7 @@ const express = require("express");
 const User = require("../users/user.model");
 const Order = require("../orders/orders.model");
 const Reviews = require("../reviews/reviews.model");
+const Products = require("../products/products.model");
 const router = express.Router();
 
 // user stats by email
@@ -40,6 +41,64 @@ router.get("/user-stats/:email", async (req, res) => {
       totalPayments: totalPaymentsAmount.toFixed(2),
       totalReviews,
       totalPurchasedProducts,
+    });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server error");
+  }
+});
+
+//admin stats
+
+router.get("/admin-stats", async (req, res) => {
+  try {
+    // total orders
+    const totalOrders = await Order.countDocuments();
+    // total products
+    const totalProducts = await Products.countDocuments();
+    // total users
+    const totalUsers = await User.countDocuments();
+    // total reviews
+    const totalReviews = await Reviews.countDocuments();
+    // calculate total earning
+    const totalEarningsResult = await Order.aggregate([
+      { $group: { _id: null, totalEarnings: { $sum: "$amount" } } },
+    ]);
+
+    const totalEarnings =
+      totalEarningsResult.length > 0 ? totalEarningsResult[0].totalEarnings : 0;
+
+    // monthly earning
+
+    const monthlyEarningsResults = await Order.aggregate([
+      {
+        $group: {
+          _id: {
+            month: { $month: "$createdAt" },
+            year: { $year: "$createdAt" },
+          },
+          monthlyEarnings: { $sum: "$amount" },
+        },
+      },
+      {
+        $sort: { "_id.year": 1, "_id.month": 1 },
+      },
+    ]);
+
+    //FORMAT monthly earing
+    const monthlyEarnings = monthlyEarningsResults.map((entry) => ({
+      month: entry._id.month,
+      year: entry._id.year,
+      earnings: entry.monthlyEarnings.toFixed(2),
+    }));
+
+    res.status(200).json({
+        totalOrders,
+        totalProducts,
+      totalUsers,
+      totalReviews,
+      totalEarnings,
+      monthlyEarnings,
     });
   } catch (error) {
     console.error(error.message);
