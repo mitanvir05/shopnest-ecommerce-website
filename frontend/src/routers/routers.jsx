@@ -9,6 +9,7 @@ import Login from "../components/Login";
 import Register from "../components/Register";
 import PaymentSuccess from "../components/PaymentSuccess";
 import DashboardLayout from "../pages/dashboard/DashboardLayout";
+import PrivateRoute from "./PrivateRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,9 +36,9 @@ const router = createBrowserRouter([
         element: <SingleProduct />,
       },
       {
-        path:"/success",
-        element:<PaymentSuccess/>
-      }
+        path: "/success",
+        element: <PaymentSuccess />,
+      },
     ],
   },
   {
@@ -51,63 +52,70 @@ const router = createBrowserRouter([
   // dashboard routes stats
   {
     path: "/dashboard",
-    element: <DashboardLayout/>,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       //users routes
       {
-        path:"",
-        element:<div>User Dashboard</div>
+        path: "",
+        element: <div>User Dashboard</div>,
       },
       {
-        path:"orders",
-        element:<div>User Order</div>
+        path: "orders",
+        element: <div>User Order</div>,
       },
       {
-        path:"payments",
-        element:<div>User Payment</div>
+        path: "payments",
+        element: <div>User Payment</div>,
       },
       {
-        path:"profile",
-        element:<div>User Profile</div>
+        path: "profile",
+        element: <div>User Profile</div>,
       },
       {
-        path:"reviews",
-        element:<div>User Reviews</div>
+        path: "reviews",
+        element: <div>User Reviews</div>,
       },
 
       //admin routes
       {
-        path:"admin",
-        element:<div>Admin Dashboard</div>
+        path: "admin",
+        element: (
+          <PrivateRoute role="admin">
+            <div>Admin Dashboard</div>
+          </PrivateRoute>
+        ),
       },
       {
-        path:"add-new-post",
-        element:<div>New Post</div>
+        path: "add-new-post",
+        element: <div>New Post</div>,
       },
       {
-        path:"manage-products",
-        element:<div>Manage Product</div>
+        path: "manage-products",
+        element: <div>Manage Product</div>,
       },
       {
-        path:"update-product/:id",
-        element:<div>Update Product</div>
+        path: "update-product/:id",
+        element: <div>Update Product</div>,
       },
       {
-        path:"users",
-        element:<div>All User</div>
+        path: "users",
+        element: <div>All User</div>,
       },
       {
-        path:"manage-orders",
-        element:<div>Manage Orders</div>
+        path: "manage-orders",
+        element: <div>Manage Orders</div>,
       },
-     
 
       //Others routes
       {
         path: "*",
         element: <div>Not Found</div>,
       },
-    ]
+    ],
   },
 ]);
 export default router;
