@@ -3,17 +3,17 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useLogoutUserMutation } from "../../redux/features/auth/authApi";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/features/auth/authSlice";
-import Swal from "sweetalert2";  // Import SweetAlert2
+import Swal from "sweetalert2";  
 
 const navItems = [
-  { path: "/dashboard", label: "Dashboard" },
-  { path: "/dashboard/orders", label: "Orders" },
-  { path: "/dashboard/payments", label: "Payments" },
-  { path: "/dashboard/profile", label: "Profile" },
-  { path: "/dashboard/reviews", label: "Reviews" },
+  { path: "/dashboard/admin", label: "Dashboard" },
+  { path: "/dashboard/add-new-post", label: "Add New Post" },
+  { path: "/dashboard/manage-products", label: "Manage Products" },
+  { path: "/dashboard/users", label: "Users" },
+  { path: "/dashboard/manage-orders", label: "Manage Orders" },
 ];
 
-const UserDashboard = () => {
+const AdminDashboard = () => {
   const [logoutUser] = useLogoutUserMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ const UserDashboard = () => {
       <div>
         <div className="nav__logo">
           <Link to="/">ShopNest</Link>
-          <p className="text-xs italic">User Dashboard</p>
+          <p className="text-xs italic">Admin Dashboard</p>
         </div>
         <hr className="mt-5" />
         <ul className="space-y-5 pt-5">
@@ -77,4 +77,4 @@ const UserDashboard = () => {
   );
 };
 
-export default UserDashboard;
+export default AdminDashboard;
