@@ -10,6 +10,10 @@ import Register from "../components/Register";
 import PaymentSuccess from "../components/PaymentSuccess";
 import DashboardLayout from "../pages/dashboard/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
+import UserDashboardMain from "../pages/dashboard/user/dashboard/userDashboardMain";
+import UserOrders from "../pages/dashboard/user/UserOrders";
+import UserPayments from "../pages/dashboard/user/UserPayments";
+import OrderDetails from "../pages/dashboard/user/OrderDetails";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,6 +43,10 @@ const router = createBrowserRouter([
         path: "/success",
         element: <PaymentSuccess />,
       },
+      {
+        path: "/orders/:orderId",
+        element: <OrderDetails/>,
+      },
     ],
   },
   {
@@ -61,15 +69,15 @@ const router = createBrowserRouter([
       //users routes
       {
         path: "",
-        element: <div>User Dashboard</div>,
+        element: <UserDashboardMain/>,
       },
       {
         path: "orders",
-        element: <div>User Order</div>,
+        element: <UserOrders/>,
       },
       {
         path: "payments",
-        element: <div>User Payment</div>,
+        element: <UserPayments/>,
       },
       {
         path: "profile",
