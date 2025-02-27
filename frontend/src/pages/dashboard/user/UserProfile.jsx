@@ -48,7 +48,7 @@ const UserProfile = () => {
         const response = await editProfile(updatedUser).unwrap();
         
         dispatch(setUser(response.user))
-        alert("Updated Succesfully")
+        alert("Updated Succesfully please login again")
         localStorage.setItem("user", JSON.stringify(response.user))
 
     } catch (error) {
