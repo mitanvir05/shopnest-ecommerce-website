@@ -108,22 +108,37 @@ router.put("/users/:id", async (req, res) => {
 
 router.patch("/edit-profile", async (req, res) => {
   try {
-    const { userId, username, email, bio, profession, profileImage } = req.body;
-
-    const updatedUser = await User.findByIdAndUpdate(
-      userId,
-      { username, email, bio, profession, profileImage },
-      { new: true }
-    );
-
-    if (!updatedUser) {
-      return res.status(404).send({ message: "User not found" });
+    const { userId, username, profileImage, bio, profession } = req.body;
+    if (!userId) {
+      return res.status(400).send({ message: "User ID is required" });
     }
+    const user = await User.findById(userId);
 
-    res.send(updatedUser);
+    if (!user) {
+      return res.status(400).send({ message: "User not found" });
+    }
+    // update profile
+    if (username !== undefined) user.username = username;
+    if (profileImage !== undefined) user.profileImage = profileImage;
+    if (bio !== undefined) user.bio = bio;
+    if (profession !== undefined) user.profession = profession;
+
+    await user.save();
+    res.status(200).send({
+      message: "Profile updated successfully",
+      user: {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        profileImage: user.profileImage,
+        bio: user.bio,
+        profession: user.profession,
+        role: user.role,
+      },
+    });
   } catch (error) {
-    console.error(error.message);
-    res.status(500).send("Error updating user profile: " + error.message);
+    console.error("Error updating user profile", error);
+    res.status(500).send({ message: "Error updating user profile" });
   }
 });
 
