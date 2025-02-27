@@ -54,6 +54,7 @@ const UserProfile = () => {
     } catch (error) {
       console.error("Error updating user profile:", error);
     }
+    setIsModalOpen(false);
   };
 
   return (
