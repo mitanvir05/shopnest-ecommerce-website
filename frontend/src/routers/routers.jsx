@@ -11,6 +11,7 @@ import PaymentSuccess from "../components/PaymentSuccess";
 import DashboardLayout from "../pages/dashboard/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
 import UserDashboardMain from "../pages/dashboard/user/dashboard/userDashboardMain";
+import UserOrders from "../pages/dashboard/user/UserOrders";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -66,7 +67,7 @@ const router = createBrowserRouter([
       },
       {
         path: "orders",
-        element: <div>User Order</div>,
+        element: <UserOrders/>,
       },
       {
         path: "payments",
