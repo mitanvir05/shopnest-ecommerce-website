@@ -46,8 +46,11 @@ const UserProfile = () => {
     };
     try {
         const response = await editProfile(updatedUser).unwrap();
-        console.log(response);
+        
         dispatch(setUser(response.user))
+        alert("Updated Succesfully")
+        localStorage.setItem("user", JSON.stringify(response.user))
+
     } catch (error) {
       console.error("Error updating user profile:", error);
     }
