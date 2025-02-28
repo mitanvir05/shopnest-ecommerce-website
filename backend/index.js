@@ -18,6 +18,9 @@ app.use(
   })
 );
 
+//image
+const uploadImage = require("./src/utils/uploadImage")
+
 // Routes
 const authRoutes = require("./src/users/user.route");
 const productRoutes = require("./src/products/products.route");
@@ -33,6 +36,13 @@ app.use("/api/stats", statsRoutes);
 // Default Route
 app.get("/", (req, res) => {
   res.send("Hello From Ecom!");
+}); 
+
+//upload imgg
+app.post("/uploadImage", (req, res) => {
+  uploadImage(req.body.image)
+    .then((url) => res.send(url))
+    .catch((err) => res.status(500).send(err));
 });
 
 // Connect to MongoDB and Start Server
@@ -40,10 +50,12 @@ mongoose
   .connect(process.env.DB_URL)
   .then(() => {
     console.log("MongoDB is connected");
+
     app.listen(port, () => {
       console.log(`Ecommerce app listening on port ${port}`);
     });
   })
+
   .catch((err) => {
     console.error("MongoDB connection error:", err);
   });
