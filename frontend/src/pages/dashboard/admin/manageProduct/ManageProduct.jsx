@@ -5,6 +5,7 @@ import {
 } from "../../../../redux/features/products/productsApi";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2"; 
+import LoadingSpinner from "../../../../utils/LoadingSpinner";
 
 const ManageProduct = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -73,7 +74,7 @@ const ManageProduct = () => {
 
   return (
     <>
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <LoadingSpinner/>}
       {error && <div>Error loading products.</div>}
       <section className="py-1 bg-blueGray-50">
         <div className="w-full mb-12 xl:mb-0 px-4 mx-auto">

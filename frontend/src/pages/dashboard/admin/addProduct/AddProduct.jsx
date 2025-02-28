@@ -63,7 +63,7 @@ const AddProduct = () => {
         try {
             await addProduct({ ...product, image, author: user?._id }).unwrap();
             
-            // ✅ SweetAlert2 Success Notification
+            
             Swal.fire({
                 title: "Success!",
                 text: "Product added successfully",
@@ -83,7 +83,7 @@ const AddProduct = () => {
         } catch (error) {
             console.error("Failed to submit product", error);
 
-            // ❌ SweetAlert2 Error Notification
+            
             Swal.fire({
                 title: "Error!",
                 text: "Failed to add product. Please try again.",

@@ -105,19 +105,26 @@ router.get("/:id", async (req, res) => {
 
 // Update product
 
-router.patch("/update-product/:id", verifyToken,verifyAdmin, async (req, res) => {
+router.patch("/update-product/:id", verifyToken, verifyAdmin, async (req, res) => {
   try {
-    const product = await Products.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
-    if (!product) return res.status(404).send("Product not found");
+    const productId = req.params.id;
+    const updatedProduct = await Products.findByIdAndUpdate(
+      productId,
+      { ...req.body },
+      { new: true }
+    );
+
+    if (!updatedProduct) {
+      return res.status(404).send({ message: "Product not found" });
+    }
+
     res.status(200).send({
       message: "Product updated successfully",
-      product: product,
+      product: updatedProduct,
     });
   } catch (error) {
-    console.error(error.message);
-    res.status(500).send("Server Error on updating product");
+    console.error("Error updating the product", error);
+    res.status(500).send({ message: "Failed to update the product" });
   }
 });
 
