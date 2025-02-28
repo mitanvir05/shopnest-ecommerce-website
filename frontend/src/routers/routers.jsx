@@ -16,6 +16,13 @@ import UserPayments from "../pages/dashboard/user/UserPayments";
 import OrderDetails from "../pages/dashboard/user/OrderDetails";
 import UserReviews from "../pages/dashboard/user/UserReviews";
 import UserProfile from "../pages/dashboard/user/UserProfile";
+import AdminDashboardMain from "../pages/dashboard/admin/dashboard/AdminDashboardMain";
+import AddProduct from "../pages/dashboard/admin/addProduct/AddProduct";
+import ManageProduct from "../pages/dashboard/admin/manageProduct/ManageProduct";
+import UpdateProduct from "../pages/dashboard/admin/manageProduct/UpdateProduct";
+import ManageUser from "../pages/dashboard/admin/users/ManageUser";
+import ManageOrders from "../pages/dashboard/admin/manageOrders/ManageOrders";
+import NotFound from "../components/NotFound";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -95,35 +102,35 @@ const router = createBrowserRouter([
         path: "admin",
         element: (
           <PrivateRoute role="admin">
-            <div>Admin Main</div>
+           <AdminDashboardMain/>
           </PrivateRoute>
         ),
       },
       {
-        path: "add-new-post",
-        element: <div>New Post</div>,
+        path: "add-product",
+        element: <AddProduct/>,
       },
       {
         path: "manage-products",
-        element: <div>Manage Product</div>,
+        element: <ManageProduct/>,
       },
       {
         path: "update-product/:id",
-        element: <div>Update Product</div>,
+        element: <UpdateProduct/>,
       },
       {
         path: "users",
-        element: <div>All User</div>,
+        element: <ManageUser/>,
       },
       {
         path: "manage-orders",
-        element: <div>Manage Orders</div>,
+        element: <ManageOrders/>,
       },
 
       //Others routes
       {
         path: "*",
-        element: <div>Not Found</div>,
+        element: <NotFound/>,
       },
     ],
   },

@@ -3,14 +3,14 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useLogoutUserMutation } from "../../redux/features/auth/authApi";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/features/auth/authSlice";
-import Swal from "sweetalert2";  
+import Swal from "sweetalert2";
 
 const navItems = [
   { path: "/dashboard/admin", label: "Dashboard" },
-  { path: "/dashboard/add-new-post", label: "Add New Post" },
+  { path: "/dashboard/add-product", label: "Add Product" },
   { path: "/dashboard/manage-products", label: "Manage Products" },
-  { path: "/dashboard/users", label: "Users" },
   { path: "/dashboard/manage-orders", label: "Manage Orders" },
+  { path: "/dashboard/users", label: "All Users" },
 ];
 
 const AdminDashboard = () => {
@@ -31,8 +31,12 @@ const AdminDashboard = () => {
         if (result.isConfirmed) {
           await logoutUser().unwrap();
           dispatch(logout());
-          Swal.fire("Logged Out", "You have been logged out successfully.", "success");
-          navigate("/"); 
+          Swal.fire(
+            "Logged Out",
+            "You have been logged out successfully.",
+            "success"
+          );
+          navigate("/");
         }
       });
     } catch (error) {
