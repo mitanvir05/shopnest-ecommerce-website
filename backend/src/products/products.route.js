@@ -123,26 +123,39 @@ router.patch("/update-product/:id", verifyToken,verifyAdmin, async (req, res) =>
 
 // Delete product
 
-router.delete("/:id", verifyToken, async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
-    const product = await Products.findByIdAndDelete(req.params.id);
-    if (!product) return res.status(404).send("Product not found");
-    // delete reviews related product
-    await Reviews.deleteMany({ productId: req.params.id });
-    res.status(200).send({ message: "Product deleted successfully" });
+    const productId = req.params.id;
+    const deletedProduct = await Products.findByIdAndDelete(productId);
+
+    if (!deletedProduct) {
+      return res.status(404).send({ message: "Product not found" });
+    }
+
+    // delete reviews related to the product
+    await Reviews.deleteMany({ productId: productId });
+
+    res.status(200).send({
+      message: "Product deleted successfully",
+    });
   } catch (error) {
-    console.error(error.message);
-    res.status(500).send("Server Error on deleting product");
+    console.error("Error deleting the product", error);
+    res.status(500).send({ message: "Failed to delete the product" });
   }
 });
 
-//get related products
+// get related products
 router.get("/related/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    if (!id) return res.status(404).send("Product id not found");
+
+    if (!id) {
+      return res.status(400).send({ message: "Product ID is required" });
+    }
     const product = await Products.findById(id);
-    if (!product) return res.status(404).send("Product not found");
+    if (!product) {
+      return res.status(404).send({ message: "Product not found" });
+    }
 
     const titleRegex = new RegExp(
       product.name
@@ -151,14 +164,20 @@ router.get("/related/:id", async (req, res) => {
         .join("|"),
       "i"
     );
+
     const relatedProducts = await Products.find({
-      _id: { $ne: id },
-      $or: [{ name: { $regex: titleRegex } }, { category: product.category }],
+      _id: { $ne: id }, // Exclude the current product
+      $or: [
+        { name: { $regex: titleRegex } }, // Match similar names
+        { category: product.category }, // Match the same category
+      ],
     });
+
     res.status(200).send(relatedProducts);
+
   } catch (error) {
-    console.error(error.message);
-    res.status(500).send("Server Error on get related products");
+    console.error("Error fetching the related products", error);
+    res.status(500).send({ message: "Failed to fetch related products" });
   }
 });
 
