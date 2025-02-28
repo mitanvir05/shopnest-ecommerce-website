@@ -21,6 +21,8 @@ import AddProduct from "../pages/dashboard/admin/addProduct/AddProduct";
 import ManageProduct from "../pages/dashboard/admin/manageProduct/ManageProduct";
 import UpdateProduct from "../pages/dashboard/admin/manageProduct/UpdateProduct";
 import ManageUser from "../pages/dashboard/admin/users/ManageUser";
+import ManageOrders from "../pages/dashboard/admin/manageOrders/ManageOrders";
+import NotFound from "../components/NotFound";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -122,13 +124,13 @@ const router = createBrowserRouter([
       },
       {
         path: "manage-orders",
-        element: <div>Manage Orders</div>,
+        element: <ManageOrders/>,
       },
 
       //Others routes
       {
         path: "*",
-        element: <div>Not Found</div>,
+        element: <NotFound/>,
       },
     ],
   },

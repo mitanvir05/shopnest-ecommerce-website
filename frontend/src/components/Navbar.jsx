@@ -31,17 +31,19 @@ const Navbar = () => {
   // admin dropdown
   const adminDropDownMenus = [
     { label: "Dashboard", path: "/dashboard/admin" },
-    { label: "Manage Items", path: "/dashboard/manage-products" },
-    { label: "All Orders", path: "/dashboard/manage-orders" },
     { label: "Add Product", path: "/dashboard/add-product" },
+    { label: "Manage Product", path: "/dashboard/manage-products" },
+    { label: "All Orders", path: "/dashboard/manage-orders" },
+    { label: "All Users", path: "/dashboard/users" },
   ];
 
   // user dropdown
   const userDropDownMenus = [
     { label: "Dashboard", path: "/dashboard" },
-    { label: "Profile", path: "/dashboard/profile" },
-    { label: "Payments", path: "/dashboard/payments" },
     { label: "Orders", path: "/dashboard/orders" },
+    { label: "Payments", path: "/dashboard/payments" },
+    { label: "Profile", path: "/dashboard/profile" },
+   
   ];
 
   const dropDownMenus =

@@ -6,10 +6,11 @@ import {
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2"; 
 import LoadingSpinner from "../../../../utils/LoadingSpinner";
+import { FaRegEdit } from "react-icons/fa";
 
 const ManageProduct = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage] = useState(12);
+  const [productsPerPage] = useState(6);
   const {
     data: { products = [], totalPages, totalProducts } = {},
     isLoading,
@@ -86,14 +87,7 @@ const ManageProduct = () => {
                     All Products
                   </h3>
                 </div>
-                <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-                  <button
-                    className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button"
-                  >
-                    See all
-                  </button>
-                </div>
+               
               </div>
               <h3 className="my-4 text-sm">
                 Showing {startProduct} to {endProduct} of {totalProducts}{" "}
@@ -151,8 +145,8 @@ const ManageProduct = () => {
                           )}
                         </td>
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 cursor-pointer hover:text-primary">
-                          <Link to={`/dashboard/update-product/${product._id}`}>
-                            Edit
+                          <Link className="flex gap-1 items-center" to={`/dashboard/update-product/${product._id}`}>
+                           <FaRegEdit /> Edit
                           </Link>
                         </td>
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">

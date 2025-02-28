@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import { useDeleteUserMutation, useGetUserQuery } from "../../../../redux/features/auth/authApi";
 import Swal from "sweetalert2";
 import UpdateUserModal from "./UpdateUserModal";
 import LoadingSpinner from "../../../../utils/LoadingSpinner";
+import { FaRegEdit, FaTrash } from 'react-icons/fa'; 
 
 const ManageUser = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -59,14 +60,6 @@ const ManageUser = () => {
                 <div className="relative w-full px-4 max-w-full flex-grow flex-1">
                   <h3 className="font-semibold text-base text-blueGray-700">All Users</h3>
                 </div>
-                <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-                  <button
-                    className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button"
-                  >
-                    See all
-                  </button>
-                </div>
               </div>
             </div>
 
@@ -111,9 +104,7 @@ const ManageUser = () => {
                         <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                           <span
                             className={`rounded-full py-[2px] px-3 ${
-                              user?.role === "admin"
-                                ? "bg-indigo-500 text-white"
-                                : "bg-amber-300"
+                              user?.role === "admin" ? "bg-indigo-500 text-white" : "bg-amber-300"
                             }`}
                           >
                             {user?.role}
@@ -124,14 +115,16 @@ const ManageUser = () => {
                             onClick={() => handleEdit(user)}
                             className="flex gap-1 items-center hover:text-red-500"
                           >
-                            <i className="ri-edit-2-line"></i> Edit
+                            <FaRegEdit />
+                            Edit
                           </button>
                         </td>
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                           <button
                             onClick={() => handleDelete(user?._id)}
-                            className="bg-red-600 text-white px-2 py-1"
+                            className="flex gap-1 items-center text-red-600 hover:text-red-500"
                           >
+                            <FaTrash /> {/* Trash icon */}
                             Delete
                           </button>
                         </td>
