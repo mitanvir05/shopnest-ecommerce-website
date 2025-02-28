@@ -1,7 +1,7 @@
 import React from "react";
 
 const AdminStats = ({ stats }) => {
-  console.log(stats);
+ // console.log(stats);
   return (
     <div className="my-5 space-y-4 ">
       <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4 grid-cols-1 sm:grid-col-2">
