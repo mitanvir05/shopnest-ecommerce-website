@@ -1,19 +1,36 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import products from "../../data/products.json";
+import { useFetchAllProductsQuery } from "../../redux/features/products/productsApi";
 import ProductCards from "../shop/ProductCards";
+import LoadingSpinner from "../../utils/LoadingSpinner";
+
 const CategoryPage = () => {
   const { categoryName } = useParams();
   const [filteredProducts, setFilteredProducts] = useState([]);
+
+  // Use the Redux hook to fetch all products
+  const { data, isLoading, error } = useFetchAllProductsQuery({
+    category: categoryName.toLowerCase(),  
+    limit: 50,                          
+    page: 1,                             
+  });
+
   useEffect(() => {
-    const filtered = products.filter(
-      (product) => product.category === categoryName.toLowerCase()
-    );
-    setFilteredProducts(filtered);
+    
+    if (data) {
+      const filtered = data.products.filter(
+        (product) => product.category === categoryName.toLowerCase()
+      );
+      setFilteredProducts(filtered);
+    }
+  }, [data, categoryName]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0); 
   }, [categoryName]);
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  })
+
+  if (isLoading) return <LoadingSpinner/>;
+  if (error) return <div className="text-red-500 p-4">Error: {error.message || "Error fetching products"}</div>;
 
   return (
     <>
@@ -25,11 +42,11 @@ const CategoryPage = () => {
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus,
           magni!
         </p>
-        
       </section>
+
       {/* Product Cards */}
       <div className="section__container">
-        <ProductCards products={filteredProducts}/>
+        <ProductCards products={filteredProducts} />
       </div>
     </>
   );

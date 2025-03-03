@@ -10,7 +10,6 @@ import Register from "../components/Register";
 import PaymentSuccess from "../components/PaymentSuccess";
 import DashboardLayout from "../pages/dashboard/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
-import UserDashboardMain from "../pages/dashboard/user/dashboard/userDashboardMain";
 import UserOrders from "../pages/dashboard/user/UserOrders";
 import UserPayments from "../pages/dashboard/user/UserPayments";
 import OrderDetails from "../pages/dashboard/user/OrderDetails";
@@ -23,6 +22,7 @@ import UpdateProduct from "../pages/dashboard/admin/manageProduct/UpdateProduct"
 import ManageUser from "../pages/dashboard/admin/users/ManageUser";
 import ManageOrders from "../pages/dashboard/admin/manageOrders/ManageOrders";
 import NotFound from "../components/NotFound";
+import UserDashboardMain from "../pages/dashboard/user/dashboard/userDashboardMain";
 const router = createBrowserRouter([
   {
     path: "/",
