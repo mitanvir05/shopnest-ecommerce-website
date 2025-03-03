@@ -28,8 +28,8 @@ router.post("/create-checkout-session", async (req, res) => {
       payment_method_types: ["card"],
       line_items: lineItems,
       mode: "payment",
-      success_url: `http://localhost:5173/success?session_id={CHECKOUT_SESSION_ID}&payment_method`,
-      cancel_url: `http://localhost:5173/cancel`,
+      success_url: `https://shopnest-ecommerce-7be02.web.app/success?session_id={CHECKOUT_SESSION_ID}&payment_method`,
+      cancel_url: `https://shopnest-ecommerce-7be02.web.app:5173/cancel`,
     });
 
     res.json({ id: session.id });
