@@ -13,7 +13,7 @@ app.use(express.urlencoded({ limit: "25mb", extended: true }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://shopnest-ecommerce-7be02.web.app",
     credentials: true,
   })
 );
