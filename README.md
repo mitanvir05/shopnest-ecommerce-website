@@ -92,7 +92,7 @@ With ShopNest, online shopping is smarter, faster, and more secure than ever!
 
 
 - **Admin Dashboard**
-![App Screenshot](https://i.ibb.co.com/PvVZB1Gn/new-ad.png)
+![App Screenshot](https://i.ibb.co.com/rRzPyxRx/new-ad-1.png)
 ![App Screenshot](https://i.ibb.co.com/k6ww69h7/admin-2.png)
 ![App Screenshot](https://i.ibb.co.com/1Y3c0HRj/admin-3.png)
 ![App Screenshot](https://i.ibb.co.com/V0XM3B3d/admin-4.png)
