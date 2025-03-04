@@ -5,7 +5,7 @@
 
 
 
-# ShopNest: A Modern E-commerce Website
+# ShopNest: Your Ultimate Online Shopping Destination
 
 Welcome to ShopNest, where shopping meets innovation! Our powerful e-commerce platform is designed to cater to both customers and administrators, providing a seamless online shopping experience.
 
@@ -25,7 +25,7 @@ With ShopNest, online shopping is smarter, faster, and more secure than ever!
 - Email: admin@gmail.com
 - Password : 123456
 ### User :
-- Email:user@gmail.com
+- Email: user@gmail.com
 - Password : 123456
 ## Features
 - **Simple Interface:** An easy-to-use platform that ensures seamless navigation and a smooth shopping experience.
