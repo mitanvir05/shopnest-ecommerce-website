@@ -10,7 +10,7 @@ const AdminStats = ({ stats }) => {
          border-gray-200 hover:scale-105 cursor-pointer transition-all duration-200"
         >
           <h2 className="text-xl font-semibold mb-2">Total Earnings</h2>
-          <p className="text-2xl font-bold">{stats?.totalEarnings}</p>
+          <p className="text-2xl font-bold">$ {stats?.totalEarnings}</p>
         </div>
         <div
           className="bg-white shadow-md rounded-lg p-6 border

@@ -23,7 +23,7 @@ const UserReviews = () => {
   if (error)
     return (
       <div className="text-center text-red-500 font-semibold mt-5">
-        ⚠ Error: {error.message}
+        ⚠ You have no reviews. {error.message}
       </div>
     );
 

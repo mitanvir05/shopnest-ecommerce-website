@@ -20,7 +20,7 @@ const UserPayments = () => {
   if (error) {
     return (
       <div className="text-center text-red-500 font-semibold mt-5">
-        ⚠ Error: {error.message}
+        ⚠ You have no payments yet. {error.message}
       </div>
     );
   }

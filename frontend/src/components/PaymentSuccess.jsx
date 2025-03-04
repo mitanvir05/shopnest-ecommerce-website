@@ -63,10 +63,8 @@ const PaymentSuccess = () => {
 
   return (
     <section className="section__container rounded p-6">
-      <h2 className="text-2xl font-semibold mb-4">Payment {order?.status}</h2>
+      <h2 className="text-2xl font-semibold mb-4">Order Status : {order?.status}</h2>
       <p className="mb-4">Order Id : {order?.orderId}</p>
-      <p className="mb-8">Order Status : {order?.status}</p>
-
       <ol className="sm:flex items-center relative">
         {steps.map((step, index) => (
           <TimeLineStep

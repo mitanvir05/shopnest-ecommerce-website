@@ -12,7 +12,7 @@ const UserStats = ({ stats }) => {
         duration-200 cursor-pointer hover:scale-105 transition-all "
         >
           <h2 className="text-xl font-semibold mb-2">Total Payments</h2>
-          <p className="text-2xl font-bold">${stats?.totalPayments}</p>
+          <p className="text-2xl font-bold">$ {stats?.totalPayments}</p>
         </div>
         <div
           className="mt-6 bg-white shadow-md rounded-lg p-6 border border-gray-200 hover:border-primary

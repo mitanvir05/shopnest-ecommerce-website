@@ -19,15 +19,6 @@ const UserOrders = () => {
         <LoadingSpinner />
       </div>
     );
-
-  // Handle errors
-  if (error)
-    return (
-      <div className="text-center text-red-500 font-semibold mt-5">
-        ⚠ Unable to fetch orders. Please try again later.
-      </div>
-    );
-
   // Handle no orders
   if (!orders || orders.length === 0)
     return (

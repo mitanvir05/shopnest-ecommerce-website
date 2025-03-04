@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import card1 from "../../assets/card-1.png";
 import card2 from "../../assets/card-2.png";
 import card3 from "../../assets/card-3.png";
@@ -30,7 +31,7 @@ const HeroSection = () => {
           <div className="hero__content">
             <p>{card.trend}</p>
             <h4>{card.title}</h4>
-            <a href="#">Discover More</a>
+           <Link to="/shop">Discover More</Link>
           </div>
         </div>
       ))}

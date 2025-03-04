@@ -4,7 +4,7 @@ import {
   useFetchAllProductsQuery,
 } from "../../../../redux/features/products/productsApi";
 import { Link } from "react-router-dom";
-import Swal from "sweetalert2"; 
+import Swal from "sweetalert2";
 import LoadingSpinner from "../../../../utils/LoadingSpinner";
 import { FaRegEdit } from "react-icons/fa";
 
@@ -51,7 +51,6 @@ const ManageProduct = () => {
       try {
         const response = await deleteProduct(id).unwrap();
 
-       
         Swal.fire({
           title: "Deleted!",
           text: "Product has been deleted successfully.",
@@ -62,7 +61,6 @@ const ManageProduct = () => {
       } catch (error) {
         console.error("Error deleting product", error);
 
-       
         Swal.fire({
           title: "Error!",
           text: "There was an issue deleting the product. Please try again.",
@@ -75,7 +73,7 @@ const ManageProduct = () => {
 
   return (
     <>
-      {isLoading && <LoadingSpinner/>}
+      {isLoading && <LoadingSpinner />}
       {error && <div>Error loading products.</div>}
       <section className="py-1 bg-blueGray-50">
         <div className="w-full mb-12 xl:mb-0 px-4 mx-auto">
@@ -87,7 +85,6 @@ const ManageProduct = () => {
                     All Products
                   </h3>
                 </div>
-               
               </div>
               <h3 className="my-4 text-sm">
                 Showing {startProduct} to {endProduct} of {totalProducts}{" "}
@@ -99,22 +96,22 @@ const ManageProduct = () => {
               <table className="items-center bg-transparent w-full border-collapse ">
                 <thead>
                   <tr>
-                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3  uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                       No.
                     </th>
-                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3  uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                       Product Name
                     </th>
-                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3  uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                       Category
                     </th>
-                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3  uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                       Product Image
                     </th>
-                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3  uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                       Edit or manage
                     </th>
-                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3  uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                       Actions
                     </th>
                   </tr>
@@ -124,16 +121,16 @@ const ManageProduct = () => {
                   {products &&
                     products.map((product, index) => (
                       <tr key={index}>
-                        <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
-                          {index + 1}
+                        <th className="border-t-0 px-6 align-middle border-l-0 border-r-0  whitespace-nowrap p-4 text-left text-blueGray-700 ">
+                          {startProduct + index}
                         </th>
-                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
+                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0  whitespace-nowrap p-4 ">
                           {product?.name}
                         </td>
-                        <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        <td className="border-t-0 px-6 align-center border-l-0 border-r-0 whitespace-nowrap p-4">
                           {product?.category}
                         </td>
-                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0  whitespace-nowrap p-4">
                           {product?.image ? (
                             <img
                               src={product?.image}
@@ -144,12 +141,15 @@ const ManageProduct = () => {
                             <span>No Image</span>
                           )}
                         </td>
-                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 cursor-pointer hover:text-primary">
-                          <Link className="flex gap-1 items-center" to={`/dashboard/update-product/${product._id}`}>
-                           <FaRegEdit /> Edit
+                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0  whitespace-nowrap p-4 cursor-pointer hover:text-primary">
+                          <Link
+                            className="flex gap-1 items-center"
+                            to={`/dashboard/update-product/${product._id}`}
+                          >
+                            <FaRegEdit /> Edit
                           </Link>
                         </td>
-                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0  whitespace-nowrap p-4">
                           <button
                             onClick={() => handleDeleteProduct(product._id)}
                             className="bg-red-600 text-white px-2 py-1"
