@@ -76,31 +76,27 @@ With ShopNest, online shopping is smarter, faster, and more secure than ever!
 * Cloudinary 
 ## Screenshots
 - HomePage
-![App Screenshot](https://i.ibb.co.com/WWNfnChK/home.png)
+![App Screenshot](https://i.ibb.co.com/TDNwfHZz/home-1-1.png)
 - Shop Page
-![App Screenshot](https://i.ibb.co.com/HDf21H3v/shop.png)
+![App Screenshot](https://i.ibb.co.com/HD0m1tD2/shop-1.png)
 
 
 - **User Dashboard**
-![App Screenshot](https://i.ibb.co.com/PZw1W9rM/user-dboard.png)
-![App Screenshot](https://i.ibb.co.com/8gbhmnXx/user-2.png)
-![App Screenshot](https://i.ibb.co.com/GvS3cyQ4/user-3.png)
-![App Screenshot](https://i.ibb.co.com/xtZhvQJv/user-4.png)
-![App Screenshot](https://i.ibb.co.com/4wMmH3Ds/user5.png)
-![App Screenshot](https://i.ibb.co.com/gL1Kmx1L/user-d.png)
+![App Screenshot](https://i.ibb.co.com/VYQNZ84P/new-u.png)
+![App Screenshot](https://i.ibb.co.com/wFmGXX4d/user-2.png)
+![App Screenshot](https://i.ibb.co.com/kg2vws63/user-3.png)
+![App Screenshot](https://i.ibb.co.com/ZzhYx3W0/user-4.png)
+![App Screenshot](https://i.ibb.co.com/B25KwbfY/user5.png)
+![App Screenshot](https://i.ibb.co.com/GQ75xczn/user-d.png)
 
 
 
 - **Admin Dashboard**
-![App Screenshot](https://i.ibb.co.com/DDY7RY9p/admin-1.png)
-![App Screenshot](https://i.ibb.co.com/HfWVTVnL/admin-2.png)
-![App Screenshot](https://i.ibb.co.com/FbW7SmyL/admin-3.png)
-![App Screenshot](https://i.ibb.co.com/b5B1ctTZ/admin-4.png)
-![App Screenshot](https://i.ibb.co.com/39zMzZyD/admin-5.png)
-
-
-
-
+![App Screenshot](https://i.ibb.co.com/PvVZB1Gn/new-ad.png)
+![App Screenshot](https://i.ibb.co.com/k6ww69h7/admin-2.png)
+![App Screenshot](https://i.ibb.co.com/1Y3c0HRj/admin-3.png)
+![App Screenshot](https://i.ibb.co.com/V0XM3B3d/admin-4.png)
+![App Screenshot](https://i.ibb.co.com/BVT6LM1c/admin-5.png)
 
 
 
