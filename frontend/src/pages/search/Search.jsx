@@ -8,9 +8,10 @@ const Search = () => {
 
   const handleSearch = (query) => {
     setFilteredProducts(
-      productsData.filter((product) =>
-        product.name.toLowerCase().includes(query.toLowerCase()) ||
-        product.description.toLowerCase().includes(query.toLowerCase())
+      productsData.filter(
+        (product) =>
+          product.name.toLowerCase().includes(query.toLowerCase()) ||
+          product.description.toLowerCase().includes(query.toLowerCase())
       )
     );
   };
@@ -20,8 +21,8 @@ const Search = () => {
       <section className="section__container bg-primary-light">
         <h2 className="section__header ">Search for Products</h2>
         <p className="section__subheader">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus,
-          magni!
+          Find exactly what you're looking for! Browse through our wide
+          selection of fashion, beauty, and lifestyle products with ease.
         </p>
       </section>
       <section className="section__container">

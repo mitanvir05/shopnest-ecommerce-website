@@ -11,8 +11,9 @@ const PromoBanner = () => {
         </span>
         <h4>Free Shipping</h4>
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis,
-          quibusdam?
+          Enjoy free shipping on all orders! Shop from the comfort of your home
+          and have your favorite products delivered to your doorstep without
+          extra charges.
         </p>
       </div>
       <div className="banner__card">
@@ -21,8 +22,9 @@ const PromoBanner = () => {
         </span>
         <h4>Money Back Guarantee</h4>
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis,
-          quibusdam?
+          Shop with confidence! If you're not satisfied with your purchase, we
+          offer a hassle-free money-back guarantee to ensure a risk-free
+          shopping experience.
         </p>
       </div>
       <div className="banner__card">
@@ -31,8 +33,8 @@ const PromoBanner = () => {
         </span>
         <h4>24/7 Supports</h4>
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis,
-          quibusdam?
+          We're here for you anytime! Our dedicated customer support team is
+          available 24/7 to assist you with any questions or concerns.
         </p>
       </div>
     </section>

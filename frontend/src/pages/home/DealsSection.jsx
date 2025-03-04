@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import dealsImg from "../../assets/deals.png";
 
 const DealsSection = () => {
-  const targetDate = useMemo(() => new Date("2026-02-29T23:59:59"), []);  
+  const targetDate = useMemo(() => new Date("2026-02-29T23:59:59"), []);
 
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -30,7 +30,7 @@ const DealsSection = () => {
 
     const interval = setInterval(updateCountdown, 1000);
     return () => clearInterval(interval);
-  }, [targetDate]);  
+  }, [targetDate]);
 
   return (
     <section className="section__container deals__container">
@@ -41,8 +41,9 @@ const DealsSection = () => {
         <h5 className="uppercase">Get up to 20% discount</h5>
         <h4>Deals of this Month</h4>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora iste
-          unde non? Totam veniam placeat sed, inventore voluptatem beatae hic.
+          Enjoy exclusive savings with up to 20% off on this month’s top deals!
+          Don't miss out on amazing discounts across our fashion, accessories,
+          and beauty collections.
         </p>
         <div className="deals__countdown flex-wrap">
           <div className="deals__countdown__card">

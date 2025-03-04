@@ -6,7 +6,7 @@ import LoadingSpinner from "../../utils/LoadingSpinner";
 
 const filters = {
   categories: ["all", "accessories", "dress", "jewellery", "cosmetics"],
-  colors: ["all", "black", "red", "gold", "blue","silver","beige","green"],
+  colors: ["all", "black", "red", "gold", "blue", "silver", "beige", "green"],
   priceRanges: [
     { label: "Under $50", min: 0, max: 50 },
     { label: "$50 - $100", min: 50, max: 100 },
@@ -70,8 +70,9 @@ const ShopPage = () => {
       <section className="section__container bg-primary-light">
         <h2 className="section__header">Shop Page</h2>
         <p className="section__subheader">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus,
-          magni!
+          Welcome to our exclusive collection of fashion, accessories, and
+          beauty essentials! Browse through a variety of trendy and high-quality
+          products, handpicked just for you.
         </p>
       </section>
 

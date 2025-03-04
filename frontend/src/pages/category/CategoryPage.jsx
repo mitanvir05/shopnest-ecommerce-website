@@ -39,8 +39,7 @@ const CategoryPage = () => {
           Products in {categoryName.toUpperCase()}
         </h2>
         <p className="section__subheader">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus,
-          magni!
+         Discover a stunning collection of elegant and stylish products to complete your look!
         </p>
       </section>
 
