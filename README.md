@@ -74,14 +74,15 @@ With ShopNest, online shopping is smarter, faster, and more secure than ever!
 * cookie-parser
 ### Cloud Storage: 
 * Cloudinary 
-## Screenshots
-- HomePage
+
+# Screenshots
+## HomePage
 ![App Screenshot](/frontend//src//assets/appimg/1.png)
-- Shop Page
+## Shop Page
 ![App Screenshot](/frontend//src//assets/appimg/2.png)
 
 
-- **User Dashboard**
+## User Dashboard
 ![App Screenshot](/frontend//src//assets/appimg/3.png)
 ![App Screenshot](/frontend//src//assets/appimg/4.png)
 ![App Screenshot](/frontend//src//assets/appimg/5.png)
@@ -91,7 +92,7 @@ With ShopNest, online shopping is smarter, faster, and more secure than ever!
 
 
 
-- **Admin Dashboard**
+## Admin Dashboard
 ![App Screenshot](/frontend//src//assets/appimg/9.png)
 ![App Screenshot](/frontend//src//assets/appimg/10.png)
 ![App Screenshot](/frontend//src//assets/appimg/11.png)
